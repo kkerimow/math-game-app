@@ -1,3 +1,6 @@
+// API URL'sini environment değişkeninden al
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 async function handleSignUp(event) {
     // Form submit işlemini engelle
     event.preventDefault();
@@ -19,7 +22,7 @@ async function handleSignUp(event) {
 
     try {
         // Backend'e istek gönder
-        const response = await fetch('http://localhost:5000/api/users/register', {
+        const response = await fetch(`${API_URL}/api/users/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,7 +64,7 @@ async function handleLogin(event) {
 
     try {
         console.log('Sending login request...');
-        const response = await fetch('http://localhost:5000/api/users/login', {
+        const response = await fetch(`${API_URL}/api/users/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password }),
