@@ -27,6 +27,7 @@ async function handleSignUp(event) {
             headers: {
                 'Content-Type': 'application/json',
             },
+            credentials: 'include',
             body: JSON.stringify(userData),
         });
 
@@ -67,6 +68,7 @@ async function handleLogin(event) {
         const response = await fetch(`${API_URL}/api/users/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
             body: JSON.stringify({ email, password }),
         });
 

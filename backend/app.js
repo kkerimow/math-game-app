@@ -16,9 +16,22 @@ dotenv.config();
 connectDB();
 
 // CORS configuration
+const allowedOrigins = [
+    'https://math-game-app-beta.vercel.app',
+    'http://localhost:3000',
+    'http://localhost:5000'
+];
+
 const corsOptions = {
-    origin: process.env.CORS_ORIGIN || "*",
-    methods: ["GET", "POST"],
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 };
 
