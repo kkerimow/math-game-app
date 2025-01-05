@@ -1,5 +1,5 @@
-// API URL'sini environment değişkeninden al
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+// API URL'sini window objesinden al
+const API_URL = window.API_URL || 'http://localhost:5000';
 
 async function handleSignUp(event) {
     // Form submit işlemini engelle
