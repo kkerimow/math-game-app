@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Socket.IO bağlantısı
-    const socket = io('http://localhost:5000', {
-        transports: ['websocket', 'polling']
+    const socket = io(window.API_URL, {
+        transports: ['websocket', 'polling'],
+        cors: {
+            origin: "*",
+            methods: ["GET", "POST"]
+        }
     });
 
     // Get DOM elements
