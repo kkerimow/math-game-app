@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Socket.IO bağlantısı
     const socket = io(window.API_URL, {
         transports: ['websocket', 'polling'],
         cors: {
@@ -8,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Get DOM elements
     const waitingRoom = document.getElementById('waiting-room');
     const gameContainer = document.getElementById('game-container');
     const gameOver = document.getElementById('game-over');
@@ -33,19 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let timerInterval;
     let currentAnswer = null;
 
-    // Otomatik focus fonksiyonu
     function focusInput() {
         answerInput.focus();
     }
 
-    // Input validation fonksiyonu
     function validateAnswer(input) {
         const userAnswer = parseFloat(input);
         if (isNaN(userAnswer)) return false;
         return Math.abs(userAnswer - currentAnswer) < 0.001;
     }
 
-    // Input stil güncelleme fonksiyonu
     function updateInputStyle(isCorrect) {
         answerInput.classList.remove('correct', 'wrong');
         if (isCorrect) {
@@ -86,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         player2Name.textContent = players[1].username;
         
         startTimer();
-        focusInput(); // Oyun başladığında input'a focus
+        focusInput();
     });
 
     // Listen for new questions
@@ -96,10 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
         currentAnswer = answer;
         answerInput.value = '';
         answerInput.classList.remove('correct', 'wrong');
-        focusInput(); // Yeni soru geldiğinde input'a focus
+        focusInput(); 
     });
 
-    // Listen for score updates
     socket.on('updateScores', ({ scores, correct, answeredBy }) => {
         console.log('Score update:', scores);
         Object.entries(scores).forEach(([player, score], index) => {

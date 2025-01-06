@@ -1,14 +1,10 @@
 let selectedOperation = null;
 
 function selectOperation(operation) {
-    // Tüm butonların seçimini sıfırla
     document.querySelectorAll('.buttons-container button').forEach(button => {
         button.classList.remove('selected');
     });
-
-    // Seçili butonu vurgula
     selectedOperation = operation;
-    
     document.getElementById(getButtonId(operation)).classList.add('selected');
 }
 

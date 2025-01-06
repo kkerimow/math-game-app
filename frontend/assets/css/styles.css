@@ -149,7 +149,7 @@ p {
 
 .game-container {
     font-family: 'Arial', sans-serif;
-    background-color: #f6f0ff; /* Welcome sayfasına uyumlu arka plan */
+    background-color: #f6f0ff; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -161,22 +161,22 @@ p {
 .operations {
     text-align: center;
     padding: 40px;
-    background-color: #ffffff; /* Welcome tasarımıyla uyumlu */
+    background-color: #ffffff; 
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
-    width: 400px; /* Genişlik optimize edildi */
+    width: 400px; 
 }
 
 h1 {
     font-size: 32px;
-    color: #000; /* Başlık rengi güncellendi */
+    color: #000; 
     margin-bottom: 20px;
 }
 
 p {
     font-size: 16px;
     margin-bottom: 30px;
-    color: #555; /* Yazı rengi güncellendi */
+    color: #555; 
 }
 
 .buttons-container {
@@ -191,7 +191,7 @@ p {
     font-size: 30px;
     border: none;
     border-radius: 8px;
-    background-color: #fff; /* Renk uyumu sağlandı */
+    background-color: #fff; 
     color: #000;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -199,7 +199,7 @@ p {
 }
 
 .buttons-container button:hover {
-    background-color: #ffd700; /* Hover rengi güncellendi */
+    background-color: #ffd700; 
 }
 
 .selected {
@@ -210,7 +210,7 @@ p {
 .tagline {
     font-size: 20px;
     margin-bottom: 20px;
-    color: #000000; /* Alt yazı rengi */
+    color: #000000; 
 }
 
 .play-buttons {
@@ -224,7 +224,7 @@ p {
     font-size: 18px;
     border: none;
     border-radius: 8px;
-    background-color: #6c4bd9; /* Mavi tonlar Singleplayer/Multiplayer için */
+    background-color: #6c4bd9; 
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -232,7 +232,7 @@ p {
 }
 
 .play-buttons button:hover {
-    background-color: #4a3394; /* Hover rengi */
+    background-color: #4a3394; 
 }
 
 /* ----------------------------- */
@@ -241,9 +241,6 @@ p {
     margin: 20px auto 0 auto;
     font-size: 48px;
     color: #6c4bd9;
-    /* margin-top: 15px; */
     font-weight: bold;
-    display: none; /* İlk başta gizli */
+    display: none; 
 }
-
-/* ------- Game html styles */

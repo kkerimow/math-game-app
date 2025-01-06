@@ -25,18 +25,16 @@
     <script>
         function getUsernameFromURL() {
             const params = new URLSearchParams(window.location.search);
-            return params.get('username') || 'Player1'; // Varsayılan olarak Player1
+            return params.get('username') || 'Player1'; 
         }
 
         function getUsernameFromLocalStorage() {
-            return localStorage.getItem('username') || 'Player1'; // Varsayılan olarak Player1
+            return localStorage.getItem('username') || 'Player1'; 
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Kullanıcı adını URL'den veya localStorage'dan alın
-            const username = getUsernameFromLocalStorage(); // LocalStorage'dan al
+            const username = getUsernameFromLocalStorage(); 
 
-            // Player1 alanını seç ve kullanıcı adını yazdır
             const player1Element = document.querySelector('.score');
             if (player1Element) {
                 player1Element.innerHTML = `${username}<br><span id="player1-score">0</span>`;

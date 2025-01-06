@@ -143,15 +143,12 @@ io.on('connection', (socket) => {
             
             if (isCorrect) {
                 game.scores[username]++;
-                
-                // Skor güncellemesini gönder
                 io.to(gameRoom).emit('updateScores', { 
                     scores: game.scores,
                     correct: isCorrect,
                     answeredBy: username
                 });
 
-                // Yeni soru gönder
                 const question = generateQuestion(game.operation);
                 game.currentQuestion = question;
                 io.to(gameRoom).emit('newQuestion', { 

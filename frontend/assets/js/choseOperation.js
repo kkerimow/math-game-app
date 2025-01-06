@@ -72,11 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
-    // function endGame() {
-    //     questionElement.textContent = `Game Over! You got ${correctAnswers} out of ${totalQuestions} correct.`;
-    //     answerElement.style.display = 'none';
-    // }
-
     function endGame(io, room) {
         const roomData = rooms[room];
         if (!roomData) return;

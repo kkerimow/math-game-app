@@ -1,4 +1,4 @@
-// frontend/assets/js/game.js
+
 const params = new URLSearchParams(window.location.search);
 const gameId = params.get('gameId');
 
