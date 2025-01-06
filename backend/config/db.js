@@ -13,13 +13,13 @@ mongoose.connection.on('error', (err) => {
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI); // .env dosyasındaki URI ile bağlantı
+    await mongoose.connect(process.env.MONGO_URI); 
     console.log('MongoDB Connected...');
   } catch (error) {
     console.error('MongoDB connection error:', error.message);
-    console.error('Full Error Details:', error); // Daha fazla detay döner
-    process.exit(1); // Bağlantı başarısızsa uygulamayı sonlandır
+    console.error('Full Error Details:', error); 
+    process.exit(1); 
   }
 };
 
-module.exports = connectDB; // Bağlantıyı dışa aktarıyoruz.
+module.exports = connectDB; 
