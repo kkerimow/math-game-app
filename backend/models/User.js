@@ -1,25 +1,24 @@
-const mongoose = require('mongoose'); // MongoDB bağlantısı için Mongoose'u dahil ediyoruz.
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: true, // Zorunlu alan
-    trim: true, // Başındaki ve sonundaki boşlukları temizler
+    required: true, 
+    trim: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true, // Email benzersiz olmalı
-    trim: true, // Başında ve sonunda boşlukları temizler
+    unique: true, 
+    trim: true, 
   },
   password: {
     type: String,
-    required: true, // Şifre zorunludur
-    minlength: 6, // Minimum uzunluk kontrolü
+    required: true, 
+    minlength: 6, 
   },
 }, {
-  timestamps: true, // Otomatik olarak createdAt ve updatedAt alanlarını ekler
+  timestamps: true, 
 });
-
-const User = mongoose.model('User', userSchema); // Modeli oluşturuyoruz ve 'User' koleksiyonuna bağlıyoruz.
-module.exports = User; // Modeli dışa aktarıyoruz.
+const User = mongoose.model('User', userSchema); 
+module.exports = User; 
