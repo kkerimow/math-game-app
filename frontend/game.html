@@ -6,6 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Game Challenge</title>
     <link rel="stylesheet" href="./assets/css/game.css">
+    <style>
+        .game-over {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .play-again-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .play-again-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,7 +48,13 @@
         </div>
     </div>
 
-    
+    <!-- Oyun Sonu Ekranı -->
+    <div class="game-over" id="game-over">
+        <h2>Game Over!</h2>
+        <p>Your Score: <span id="final-score">0</span></p>
+        <button class="play-again-btn" onclick="window.location.href='index2.html'">Play Again</button>
+    </div>
+
     <script>
         function getUsernameFromURL() {
             const params = new URLSearchParams(window.location.search);
