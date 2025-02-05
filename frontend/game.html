@@ -18,6 +18,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
             text-align: center;
+            z-index: 1000;
         }
         .play-again-btn {
             background-color: #4CAF50;
@@ -31,6 +32,16 @@
         }
         .play-again-btn:hover {
             background-color: #45a049;
+        }
+        .game-over-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
         }
     </style>
 </head>
@@ -48,7 +59,7 @@
         </div>
     </div>
 
-    <!-- Oyun Sonu Ekranı -->
+    <div class="game-over-overlay" id="game-over-overlay"></div>
     <div class="game-over" id="game-over">
         <h2>Game Over!</h2>
         <p>Your Score: <span id="final-score">0</span></p>
@@ -67,7 +78,6 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             const username = getUsernameFromLocalStorage(); 
-
             const player1Element = document.querySelector('.score');
             if (player1Element) {
                 player1Element.innerHTML = `${username}<br><span id="player1-score">0</span>`;
@@ -76,7 +86,7 @@
             }
         });
     </script>
-    <script src="./assets/js/choseOperation.js"></script>
+    <script src="./assets/js/game.js"></script>
 </body>
 
 </html>

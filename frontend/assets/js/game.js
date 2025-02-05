@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const answerInput = document.getElementById('answer');
     const scoreElement = document.getElementById('player1-score');
     const gameOverScreen = document.getElementById('game-over');
+    const gameOverOverlay = document.getElementById('game-over-overlay');
     const finalScoreElement = document.getElementById('final-score');
 
     // Oyun değişkenleri
@@ -99,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(timerInterval);
         answerInput.disabled = true;
         finalScoreElement.textContent = score;
+        gameOverOverlay.style.display = 'block';
         gameOverScreen.style.display = 'block';
     }
 
