@@ -21,15 +21,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const questionElement = document.getElementById('question');
     const answerInput = document.getElementById('answer');
     const scoreElement = document.getElementById('player1-score');
+    const resultElement = document.getElementById('result');
     const gameOverScreen = document.getElementById('game-over');
     const gameOverOverlay = document.getElementById('game-over-overlay');
     const finalScoreElement = document.getElementById('final-score');
+    const correctAnswersElement = document.getElementById('correct-answers');
+    const wrongAnswersElement = document.getElementById('wrong-answers');
+    const totalQuestionsElement = document.getElementById('total-questions');
 
     // Oyun değişkenleri
     let timeLeft = 120; // 2 dakika
     let score = 0;
     let currentAnswer = null;
     let timerInterval;
+    let correctAnswers = 0;
+    let wrongAnswers = 0;
+    let totalQuestions = 0;
     const operation = new URLSearchParams(window.location.search).get('operation');
 
     // Soru üret
@@ -66,11 +73,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Oyunu başlat
     function startGame() {
+        // Değişkenleri sıfırla
+        score = 0;
+        correctAnswers = 0;
+        wrongAnswers = 0;
+        totalQuestions = 0;
+        timeLeft = 120;
+        
+        // Skorları sıfırla
+        scoreElement.textContent = '0';
+        
+        // İlk soruyu göster
         const { question, answer } = generateQuestion();
         questionElement.textContent = question;
         currentAnswer = answer;
         answerInput.value = '';
         answerInput.focus();
+        
+        // Zamanlayıcıyı başlat
         startTimer();
     }
 
@@ -88,32 +108,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
-    // Cevabı kontrol et
-    function validateAnswer(input) {
-        const userAnswer = parseFloat(input);
-        if (isNaN(userAnswer)) return false;
-        return Math.abs(userAnswer - currentAnswer) < 0.001;
+    // Cevabı kontrol et ve yeni soruya geç
+    function checkAnswerAndNext() {
+        const userAnswer = parseFloat(answerInput.value);
+        if (!isNaN(userAnswer)) {
+            totalQuestions++;
+
+            if (Math.abs(userAnswer - currentAnswer) < 0.001) {
+                // Doğru cevap
+                score += 10;
+                correctAnswers++;
+                scoreElement.textContent = score;
+                resultElement.textContent = 'Doğru!';
+                resultElement.style.color = '#2ecc71';
+            } else {
+                // Yanlış cevap
+                wrongAnswers++;
+                resultElement.textContent = `Yanlış! Doğru cevap: ${currentAnswer}`;
+                resultElement.style.color = '#e74c3c';
+            }
+
+            // 1 saniye sonra yeni soruya geç
+            setTimeout(() => {
+                resultElement.textContent = '';
+                const { question, answer } = generateQuestion();
+                questionElement.textContent = question;
+                currentAnswer = answer;
+                answerInput.value = '';
+                answerInput.focus();
+            }, 1000);
+        }
     }
 
     // Oyunu bitir
     function endGame() {
         clearInterval(timerInterval);
         answerInput.disabled = true;
+        
+        // İstatistikleri güncelle
         finalScoreElement.textContent = score;
+        correctAnswersElement.textContent = correctAnswers;
+        wrongAnswersElement.textContent = wrongAnswers;
+        totalQuestionsElement.textContent = totalQuestions;
+        
+        // Game over ekranını göster
         gameOverOverlay.style.display = 'block';
         gameOverScreen.style.display = 'block';
     }
 
-    // Cevap girişini dinle
-    answerInput.addEventListener('input', (e) => {
-        if (validateAnswer(e.target.value)) {
-            score++;
-            scoreElement.textContent = score;
-            const { question, answer } = generateQuestion();
-            questionElement.textContent = question;
-            currentAnswer = answer;
-            answerInput.value = '';
-            answerInput.focus();
+    // Enter tuşuna basıldığında cevabı kontrol et
+    answerInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && answerInput.value.trim() !== '') {
+            checkAnswerAndNext();
         }
     });
 
