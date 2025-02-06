@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         timeLeft = 120;
         
         // Skorları sıfırla
-        scoreElement.textContent = '0';
+        scoreElement.textContent = score.toString();
         
         // İlk soruyu göster
         const { question, answer } = generateQuestion();
@@ -118,13 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Doğru cevap
                 score += 10;
                 correctAnswers++;
-                scoreElement.textContent = score;
-                resultElement.textContent = 'Doğru!';
+                scoreElement.textContent = score.toString();
+                resultElement.textContent = 'Correct!';
                 resultElement.style.color = '#2ecc71';
             } else {
                 // Yanlış cevap
                 wrongAnswers++;
-                resultElement.textContent = `Yanlış! Doğru cevap: ${currentAnswer}`;
+                resultElement.textContent = `Wrong! Correct answer: ${currentAnswer}`;
                 resultElement.style.color = '#e74c3c';
             }
 
@@ -146,10 +146,10 @@ document.addEventListener('DOMContentLoaded', () => {
         answerInput.disabled = true;
         
         // İstatistikleri güncelle
-        finalScoreElement.textContent = score;
-        correctAnswersElement.textContent = correctAnswers;
-        wrongAnswersElement.textContent = wrongAnswers;
-        totalQuestionsElement.textContent = totalQuestions;
+        finalScoreElement.textContent = score.toString();
+        correctAnswersElement.textContent = correctAnswers.toString();
+        wrongAnswersElement.textContent = wrongAnswers.toString();
+        totalQuestionsElement.textContent = totalQuestions.toString();
         
         // Game over ekranını göster
         gameOverOverlay.style.display = 'block';
