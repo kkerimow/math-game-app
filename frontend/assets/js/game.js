@@ -42,20 +42,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Soru üret
     function generateQuestion() {
-        const num1 = Math.floor(Math.random() * 100);
-        const num2 = Math.floor(Math.random() * 100);
-        let question, answer;
+        let num1, num2, question, answer;
 
         switch (operation) {
             case '+':
+                num1 = Math.floor(Math.random() * 100);
+                num2 = Math.floor(Math.random() * 100);
                 question = `${num1} + ${num2}`;
                 answer = num1 + num2;
                 break;
             case '-':
+                // Çıkarma işlemi için büyük sayıdan küçük sayıyı çıkar
+                num1 = Math.floor(Math.random() * 100) + 1;
+                num2 = Math.floor(Math.random() * num1); // num1'den küçük bir sayı
                 question = `${num1} - ${num2}`;
                 answer = num1 - num2;
                 break;
             case '*':
+                num1 = Math.floor(Math.random() * 12) + 1;
+                num2 = Math.floor(Math.random() * 12) + 1;
                 question = `${num1} × ${num2}`;
                 answer = num1 * num2;
                 break;
