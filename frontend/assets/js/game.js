@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let correctAnswers = 0;
     let wrongAnswers = 0;
     let totalQuestions = 0;
+    let isProcessingAnswer = false; // Cevap kontrol edilirken yeni giriş engelleme
     const operation = new URLSearchParams(window.location.search).get('operation');
 
     // Soru üret
@@ -79,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wrongAnswers = 0;
         totalQuestions = 0;
         timeLeft = 120;
+        isProcessingAnswer = false;
         
         // Skorları sıfırla
         scoreElement.textContent = '0';
@@ -110,8 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cevabı kontrol et ve yeni soruya geç
     function checkAnswerAndNext() {
+        if (isProcessingAnswer) return; // Eğer cevap işleniyorsa yeni girişi engelle
+        
         const userAnswer = parseFloat(answerInput.value);
         if (!isNaN(userAnswer)) {
+            isProcessingAnswer = true; // Cevap işlemeye başla
             totalQuestions++;
 
             if (Math.abs(userAnswer - currentAnswer) < 0.001) {
@@ -119,11 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 score += 1;
                 correctAnswers++;
                 // Update score
-                scoreElement.innerHTML = score;
+                scoreElement.textContent = score.toString();
                 resultElement.textContent = 'Correct!';
                 resultElement.style.color = '#2ecc71';
             } else {
-                // Yanlış cevap
+                // Wrong
                 wrongAnswers++;
                 resultElement.textContent = `Wrong! Correct answer: ${currentAnswer}`;
                 resultElement.style.color = '#e74c3c';
@@ -137,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentAnswer = answer;
                 answerInput.value = '';
                 answerInput.focus();
+                isProcessingAnswer = false; // Cevap işleme tamamlandı
             }, 1000);
         }
     }
@@ -145,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function endGame() {
         clearInterval(timerInterval);
         answerInput.disabled = true;
+        isProcessingAnswer = true; // Oyun bittiğinde girişleri engelle
         
         // İstatistikleri güncelle
         finalScoreElement.textContent = score.toString();
