@@ -115,10 +115,10 @@ document.addEventListener('DOMContentLoaded', () => {
             totalQuestions++;
 
             if (Math.abs(userAnswer - currentAnswer) < 0.001) {
-                // Doğru cevap
-                score += 10;
+                // Correct
+                score += 1;
                 correctAnswers++;
-                // Skoru güncelle - eski değeri tamamen değiştir
+                // Update score
                 scoreElement.innerHTML = score;
                 resultElement.textContent = 'Correct!';
                 resultElement.style.color = '#2ecc71';
