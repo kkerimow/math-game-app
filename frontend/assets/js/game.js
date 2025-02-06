@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         timeLeft = 120;
         
         // Skorları sıfırla
-        scoreElement.textContent = score.toString();
+        scoreElement.textContent = '0';
         
         // İlk soruyu göster
         const { question, answer } = generateQuestion();
@@ -118,7 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Doğru cevap
                 score += 10;
                 correctAnswers++;
-                scoreElement.textContent = score.toString();
+                // Skoru güncelle - eski değeri tamamen değiştir
+                scoreElement.innerHTML = score;
                 resultElement.textContent = 'Correct!';
                 resultElement.style.color = '#2ecc71';
             } else {
